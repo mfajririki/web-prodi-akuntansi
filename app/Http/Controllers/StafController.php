@@ -7,9 +7,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
-use App\Http\Controllers\Controller;
-use App\Imports\stafImport;
+use App\Imports\StafImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use Session;
 
 class StafController extends Controller
 {
@@ -46,9 +47,12 @@ class StafController extends Controller
             }
 
             $staf_pengajar = Staf::create([
+                'photo'          => request('photo') ? "images/staf/" . $image_name : null,
                 'nama'          => $request->nama,
                 'nidn'        => $request->nidn,
                 'jabatan'          => $request->jabatan,
+                'email' => $request->email,
+                'sintaid' => $request->sintaid
             ]);
         });
 
@@ -71,18 +75,19 @@ class StafController extends Controller
         $file = $request->file('photo');
         if ($file) {
             $image_name = time() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('images/');
+            $destinationPath = public_path('images/staf/');
             $file->move($destinationPath, $image_name);
         }
 
         $staf_pengajar = Staf::where('id', $id)
             ->update([
-                'nama'          => $request->nama,
-                'nidn'          => $request->nidn,
-                'jabatan'          => $request->jabatan,
+                'photo' => request('photo') ? "images/staf/" . $image_name : $request->old,
+                'nama' => $request->nama,
+                'nidn' => $request->nidn,
+                'jabatan' => $request->jabatan,
+                'email' => $request->email,
+                'sintaid' => $request->sintaid
             ]);
-
-
 
         return redirect(route('staf_pengajar.index'))->with('alert', 'Data berhasil diupdate!');
     }
@@ -115,7 +120,7 @@ class StafController extends Controller
         $file->move('document/import/', $nama_file);
 
         // import data
-        Excel::import(new stafImport, public_path('/document/import/' . $nama_file));
+        Excel::import(new StafImport, public_path('/document/import/' . $nama_file));
 
         // notifikasi dengan session
         // Session::flash('sukses', 'Data Siswa Berhasil Diimport!');

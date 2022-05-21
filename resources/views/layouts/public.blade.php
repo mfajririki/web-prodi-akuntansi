@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title }} | Akuntansi Universitas Bina Darma</title>
+    <title>{{ $title }} | Sistem Informasi Universitas Bina Darma</title>
 
     <link rel='stylesheet' id='wp-block-library-css' href='{{ asset("assets/css/dist/block-library/style.min76f3.css?ver=5.7.3") }}' type='text/css' media='all' />
     <link rel='stylesheet' id='contact-form-7-css' href='{{ asset("assets/content/plugins/contact-form-7/includes/css/styles7661.css?ver=5.4.2") }}' type='text/css' media='all' />
@@ -56,7 +56,7 @@
                                 <li class="menu-item"><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
                                 <li class="menu-item menu-item-has-children"><a href="#">Kurikulum</a>
                                     <ul class="sub-menu">
-                                        <li class="menu-item"><a href="{{ route('kurikulum_konten') }}">Kurikulum Akuntansi</a></li>
+                                        <li class="menu-item"><a href="{{ route('kurikulum_konten') }}">Kurikulum Sistem Informasi</a></li>
                                         <li class="menu-item"><a href="{{ route('bimbingan_akademik') }}">Bimbingan Akademik</a></li>
                                     </ul>
                                 </li>
@@ -109,7 +109,7 @@
                               Kurikulum
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="{{ route('kurikulum_konten') }}">Kurikulum Akuntansi</a></li>
+                              <li><a class="dropdown-item" href="{{ route('kurikulum_konten') }}">Kurikulum Sistem Informasi</a></li>
                               <li><a class="dropdown-item" href="{{ route('bimbingan_akademik') }}">Bimbingan Akademik</a></li>                          
                             </ul>
                           </li>
@@ -157,7 +157,7 @@
                     <div class="carousel-inner">
                         @if ($sliders == [])
                             <div class="carousel-item active">
-                                <img src="images/slider.png" class="d-block w-100" alt="slider" style="height: 275px;">
+                                <img src={{ asset("images/slider.png") }} class="d-block w-100" alt="slider" style="height: 275px;">
                             </div>
                         @else
                             @foreach ($sliders as $no => $slider)
@@ -218,7 +218,7 @@
                                 <div class="menu-campus-life-container">
                                     <ul id="menu-campus-life" class="gdlr-core-custom-menu-widget gdlr-core-menu-style-plain">
                                         <li class="menu-item"><a href="https://www.binadarma.ac.id/" target="_blank">Portal Web UBD</a></li>
-                                        <li class="menu-item"><a href="https://sisfo.binadarma.ac.id/" target="_blank">Akuntansi Akademik</a></li>
+                                        <li class="menu-item"><a href="https://sisfo.binadarma.ac.id/" target="_blank">Sistem Informasi Akademik</a></li>
                                         <li class="menu-item"><a href="https://elearning.binadarma.ac.id/" target="_blank">E-Learning</a></li>                                                                                
                                     </ul>
                                 </div>
